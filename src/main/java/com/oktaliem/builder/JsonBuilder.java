@@ -1,5 +1,6 @@
 package com.oktaliem.builder;
 
+import com.oktaliem.model.Measurement;
 import org.json.CDL;
 import org.json.HTTP;
 import org.json.JSONArray;
@@ -64,11 +65,34 @@ public class JsonBuilder {
         return result;
     }
 
-    public String JsonObjectToHttpHeader() {
+    public String jsonObjectToHttpHeader() {
         JSONObject jo = new JSONObject();
         jo.put("Method", "POST");
         jo.put("Request-URI", "http://www.example.com/");
         jo.put("HTTP-Version", "HTTP/1.1");
         return HTTP.toString(jo);
+    }
+
+    public JSONObject jsonObjectAndJSONArray(Measurement measurement) {
+        JSONObject jo = new JSONObject();
+        jo.put("id",measurement.getId());
+        jo.put("version", measurement.getVersion());
+        JSONArray branchCurr = new JSONArray();
+        branchCurr.put("1.02");
+        branchCurr.put("2.02");
+        branchCurr.put("7.93");
+        JSONObject pw = new JSONObject();
+        pw.put("value", measurement.getValue());
+        pw.put("quality", measurement.getQuality());
+        JSONObject power = new JSONObject();
+        power.put("Power", pw);
+        power.put("temp", measurement.getTemp());
+        power.put("branchCurr", branchCurr);
+        JSONObject measurePoint = new JSONObject();
+        measurePoint.put("measurepoints", power);
+        measurePoint.put("time", measurement.getTime());
+        jo.put("params", measurePoint);
+        jo.put("method", measurement.getMtd());
+        return jo;
     }
 }

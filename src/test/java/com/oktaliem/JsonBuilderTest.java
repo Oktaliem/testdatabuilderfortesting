@@ -1,12 +1,15 @@
 package com.oktaliem;
 
 import com.oktaliem.builder.JsonBuilder;
+import com.oktaliem.model.Measurement;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
+
+import static org.apache.commons.lang3.StringUtils.trim;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -67,10 +70,26 @@ public class JsonBuilderTest {
     }
 
     @Test
-    public void convertJsonObjectToHttpHeader(){
+    public void convertJsonObjectToHttpHeader() {
         String result = "POST \"http://www.example.com/\" HTTP/1.1";
-        System.out.println(json.JsonObjectToHttpHeader());
-        Assert.assertEquals(json.JsonObjectToHttpHeader(), result);
+        System.out.println(json.jsonObjectToHttpHeader());
+        Assert.assertEquals(trim(json.jsonObjectToHttpHeader()), result);
+    }
+
+    @Test
+    public void createJsonObjectAndJsonArray() {
+        Measurement measurement = new Measurement();
+        measurement.setId("123");
+        measurement.setVersion("1.0");
+        measurement.setValue(1.0);
+        measurement.setQuality(9);
+        measurement.setTemp(1.02);
+        measurement.setTime(12345);
+        measurement.setMtd("thing.measurepoint.post");
+
+        String result = "{\"method\":\"thing.measurepoint.post\",\"id\":\"123\",\"params\":{\"measurepoints\":{\"temp\":1.02,\"branchCurr\":[\"1.02\",\"2.02\",\"7.93\"],\"Power\":{\"value\":1,\"quality\":9}},\"time\":12345},\"version\":\"1.0\"}";
+        System.out.println(json.jsonObjectAndJSONArray(measurement));
+        Assert.assertEquals(json.jsonObjectAndJSONArray(measurement).toString(), result);
     }
 
 }
