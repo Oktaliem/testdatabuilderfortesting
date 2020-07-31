@@ -1,4 +1,4 @@
-package com.oktaliem;
+package com.oktaliem.unittest;
 
 import com.oktaliem.builder.JsonBuilder;
 import com.oktaliem.model.Measurement;
