@@ -1,0 +1,14 @@
+{
+    "firstname":"Jon",
+    "lastname":"Doe",
+    "email":"jd@gmail.com",
+    "date":"01/01/1968",
+    "address":"anywhere you like",
+    "cc":{
+        "number":"4444-4444-4444-4444",
+        "bank":"DBS"
+    },
+    "product":{
+        "type":"platinum"
+    }
+}

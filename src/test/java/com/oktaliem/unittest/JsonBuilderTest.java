@@ -1,6 +1,7 @@
 package com.oktaliem.unittest;
 
 import com.oktaliem.builder.JsonBuilder;
+import com.oktaliem.model.CreditCard;
 import com.oktaliem.model.Measurement;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -9,12 +10,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
 
+import java.io.IOException;
+
 import static org.apache.commons.lang3.StringUtils.trim;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JsonBuilderTest {
     JsonBuilder json = new JsonBuilder();
+    private CreditCard testData;
+
 
     @Test
     public void simpleJson() {
@@ -90,6 +95,24 @@ public class JsonBuilderTest {
         String result = "{\"method\":\"thing.measurepoint.post\",\"id\":\"123\",\"params\":{\"measurepoints\":{\"temp\":1.02,\"branchCurr\":[\"1.02\",\"2.02\",\"7.93\"],\"Power\":{\"value\":1,\"quality\":9}},\"time\":12345},\"version\":\"1.0\"}";
         System.out.println(json.jsonObjectAndJSONArray(measurement));
         Assert.assertEquals(json.jsonObjectAndJSONArray(measurement).toString(), result);
+    }
+
+    @Test
+    public void extractJsonToGetter() throws IOException {
+        testData = CreditCard.get(System.getProperty("user.dir") + "/src/main/resources/example_2.json");
+        System.out.println(testData.getFirstname());
+        System.out.println(testData.getLastName());
+        System.out.println(testData.getEmail());
+        System.out.println(testData.getDate());
+        System.out.println(testData.getAddress());
+
+        CreditCard.CC cc = testData.getCc();
+        System.out.println(cc.getNumber());
+        System.out.println(cc.getBank());
+
+        CreditCard.Product product = testData.getProduct();
+        System.out.println(product.getType());
+
     }
 
 }
