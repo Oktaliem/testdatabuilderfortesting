@@ -8,7 +8,8 @@
 - Date And Time Builder
 - Excel Builder
 - Json Builder
-- Encryption Builder
+- Encryption Builder (Inprogress)
 - Properties Builder
 - Java Faker
 - JFairy
+- Csv Builder (Inprogress)
