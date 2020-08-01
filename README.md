@@ -10,3 +10,5 @@
 - Json Builder
 - Encryption Builder
 - Properties Builder
+- Java Faker
+- JFairy
