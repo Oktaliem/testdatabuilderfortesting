@@ -48,9 +48,7 @@ public class DateAndTimeBuilderTest {
     }
 
     @Test
-    public void getCurrentGregorianCalenderTest(){
-        System.out.println(dateAndTime.getGregorianCalendar());
-    }
+    public void getCurrentGregorianCalenderTest(){ System.out.println(dateAndTime.getGregorianCalendar()); }
 
 
 }

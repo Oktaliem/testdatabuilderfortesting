@@ -101,18 +101,25 @@ public class JsonBuilderTest {
     public void extractJsonToGetter() throws IOException {
         testData = CreditCard.get(System.getProperty("user.dir") + "/src/main/resources/example_2.json");
         System.out.println(testData.getFirstname());
+        Assert.assertEquals(testData.getFirstname(),"Jon");
         System.out.println(testData.getLastName());
+        Assert.assertEquals(testData.getLastName(),"Doe");
         System.out.println(testData.getEmail());
+        Assert.assertEquals(testData.getEmail(),"jd@gmail.com");
         System.out.println(testData.getDate());
+        Assert.assertEquals(testData.getDate(),"01/01/1968");
         System.out.println(testData.getAddress());
+        Assert.assertEquals(testData.getAddress(),"anywhere you like");
 
         CreditCard.CC cc = testData.getCc();
         System.out.println(cc.getNumber());
+        Assert.assertEquals(cc.getNumber(),"4444-4444-4444-4444");
         System.out.println(cc.getBank());
+        Assert.assertEquals(cc.getBank(),"DBS");
 
         CreditCard.Product product = testData.getProduct();
         System.out.println(product.getType());
-
+        Assert.assertEquals(product.getType(),"platinum");
     }
 
 }
