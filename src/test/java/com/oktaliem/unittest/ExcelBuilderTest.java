@@ -17,7 +17,7 @@ import java.io.IOException;
 public class ExcelBuilderTest {
 
     @Test
-    public void getExcelColumnAndRow() throws IOException, InvalidFormatException {
+    public void getExcelColumnAndRowFromExcelFile() throws IOException, InvalidFormatException {
         String fileName = System.getProperty("user.dir") + "/src/main/resources/SampleData.xlsx";
         ExcelBuilder spreadsheet = new ExcelBuilder(new File(fileName));
         spreadsheet.switchToSheet("SalesOrders");
@@ -25,7 +25,7 @@ public class ExcelBuilderTest {
     }
 
     @Test
-    public void writeDataToExcel() {
+    public void writeDataToExcelFile() {
         String fileName = System.getProperty("user.dir") + "/src/main/resources/WriteExcel.xlsx";
         Object[][] cars = {
                 {"Car", "Type", "Total"},

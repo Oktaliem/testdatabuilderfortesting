@@ -16,5 +16,4 @@ public class Measurement {
     private List<String> ranchCurr;
     private int time;
     private String mtd;
-
 }
