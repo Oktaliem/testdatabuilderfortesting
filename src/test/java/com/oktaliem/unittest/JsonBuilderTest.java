@@ -101,25 +101,50 @@ public class JsonBuilderTest {
     public void extractJsonToGetter() throws IOException {
         testData = CreditCard.get(System.getProperty("user.dir") + "/src/main/resources/example_2.json");
         System.out.println(testData.getFirstname());
-        Assert.assertEquals(testData.getFirstname(),"Jon");
+        Assert.assertEquals(testData.getFirstname(), "Jon");
         System.out.println(testData.getLastName());
-        Assert.assertEquals(testData.getLastName(),"Doe");
+        Assert.assertEquals(testData.getLastName(), "Doe");
         System.out.println(testData.getEmail());
-        Assert.assertEquals(testData.getEmail(),"jd@gmail.com");
+        Assert.assertEquals(testData.getEmail(), "jd@gmail.com");
         System.out.println(testData.getDate());
-        Assert.assertEquals(testData.getDate(),"01/01/1968");
+        Assert.assertEquals(testData.getDate(), "01/01/1967");
         System.out.println(testData.getAddress());
-        Assert.assertEquals(testData.getAddress(),"anywhere you like");
+        Assert.assertEquals(testData.getAddress(), "anywhere you like");
 
         CreditCard.CC cc = testData.getCc();
         System.out.println(cc.getNumber());
-        Assert.assertEquals(cc.getNumber(),"4444-4444-4444-4444");
+        Assert.assertEquals(cc.getNumber(), "4444-4444-4444-4444");
         System.out.println(cc.getBank());
-        Assert.assertEquals(cc.getBank(),"DBS");
+        Assert.assertEquals(cc.getBank(), "DBS");
 
         CreditCard.Product product = testData.getProduct();
         System.out.println(product.getType());
-        Assert.assertEquals(product.getType(),"platinum");
+        Assert.assertEquals(product.getType(), "platinum");
+    }
+
+    @Test
+    public void createJsonOnTheFly() throws IOException {
+        CreditCard.CC cc = new CreditCard.CC("4444-4444-4444-5555", "BCA");
+        CreditCard.Product product = new CreditCard.Product("Gold");
+        CreditCard data = new CreditCard("Okta", "Joe", "abc@gmail.com", "01/01/1967", "Singapore", cc, product);
+        String testData = CreditCard.set(data);
+        System.out.println(testData);
+        String result = "{\n" +
+                "  \"lastName\" : \"Joe\",\n" +
+                "  \"firstname\" : \"Okta\",\n" +
+                "  \"lastname\" : \"Joe\",\n" +
+                "  \"email\" : \"abc@gmail.com\",\n" +
+                "  \"date\" : \"01/01/1967\",\n" +
+                "  \"address\" : \"Singapore\",\n" +
+                "  \"cc\" : {\n" +
+                "    \"number\" : \"4444-4444-4444-5555\",\n" +
+                "    \"bank\" : \"BCA\"\n" +
+                "  },\n" +
+                "  \"product\" : {\n" +
+                "    \"type\" : \"Gold\"\n" +
+                "  }\n" +
+                "}";
+        Assert.assertEquals(result,testData);
     }
 
 }

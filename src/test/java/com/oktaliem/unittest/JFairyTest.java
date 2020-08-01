@@ -3,19 +3,13 @@ package com.oktaliem.unittest;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.DateProducer;
-import io.codearte.jfairy.producer.RandomGenerator;
-import io.codearte.jfairy.producer.payment.CreditCard;
-import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.company.Company;
 import io.codearte.jfairy.producer.net.NetworkProducer;
-
+import io.codearte.jfairy.producer.payment.CreditCard;
+import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
-import io.codearte.jfairy.producer.util.AlphaNumberSystem;
-import io.codearte.jfairy.producer.util.LanguageCode;
 import org.junit.Test;
 
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.Locale;
 
 public class JFairyTest {
