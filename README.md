@@ -7,7 +7,6 @@
 ## Features
 Simple utilities/libraries to prepare test data on the fly for Automated API Testing and End to End (Selenium) Testing
 
-## Features
 - Date And Time Builder
 - Excel Builder
 - Json Builder
