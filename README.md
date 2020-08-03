@@ -5,7 +5,7 @@
 # Sample of Test Data Builder In Java
 
 ## Features
-Simple utilities/libraries to prepare test data on the fly for Automated API Testing and End to End (Selenium) Testing
+Simple utilities/libraries to prepare test data on the fly for Automated API Testing and End to End (Selenium/Appium) Testing
 
 - Date And Time Builder
 - Excel Builder
