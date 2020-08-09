@@ -10,7 +10,7 @@ Simple utilities/libraries to prepare test data on the fly for Automated API Tes
 - Date And Time Builder
 - Excel Builder
 - Json Builder
-- Encryption Builder (To Do)
+- Encryption Builder
 - Properties Builder
 - Java Faker
 - JFairy
