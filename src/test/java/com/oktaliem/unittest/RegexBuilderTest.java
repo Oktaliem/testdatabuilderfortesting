@@ -4,7 +4,7 @@ import com.oktaliem.builder.RegexBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RegexTest {
+public class RegexBuilderTest {
     RegexBuilder regexBuilder = new RegexBuilder();
 
     @Test
