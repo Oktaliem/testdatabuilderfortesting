@@ -15,10 +15,10 @@ import java.io.IOException;
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ExcelBuilderTest {
+    String fileName = System.getProperty("user.dir") + "/src/main/resources/SampleData.xlsx";
 
     @Test
     public void getExcelColumnAndRowFromExcelFile() throws IOException, InvalidFormatException {
-        String fileName = System.getProperty("user.dir") + "/src/main/resources/SampleData.xlsx";
         ExcelBuilder spreadsheet = new ExcelBuilder(new File(fileName));
         spreadsheet.switchToSheet("SalesOrders");
         Assert.assertEquals(spreadsheet.getCellData("Item", 3), "Pencil");
@@ -37,6 +37,14 @@ public class ExcelBuilderTest {
         };
         ExcelBuilder excel = new ExcelBuilder();
         excel.createExcelFile(fileName, cars);
+    }
+
+    @Test
+    public void getValueBySetUpRowAncColumn() throws Exception {
+        ExcelBuilder excel = new ExcelBuilder();
+        excel.setExcelFile(fileName,"SalesOrders");
+        Assert.assertEquals("Kivell",excel.getCellData(2,2));
+        System.out.println(excel.getCellData(2,2));
     }
 
 }

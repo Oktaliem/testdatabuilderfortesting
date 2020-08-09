@@ -2,6 +2,7 @@ package com.oktaliem.unittest;
 
 import com.oktaliem.builder.JsonBuilder;
 import com.oktaliem.model.CreditCard;
+import com.oktaliem.model.CreditCardDeserialize;
 import com.oktaliem.model.Measurement;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -19,48 +20,48 @@ import static org.apache.commons.lang3.StringUtils.trim;
 public class JsonBuilderTest {
     JsonBuilder json = new JsonBuilder();
     private CreditCard testData;
-
+    private CreditCardDeserialize deserialize;
 
     @Test
     public void simpleJson() {
         String result = "{\"number\":\"23\",\"colour\":\"red\",\"name\":\"maria\"}";
         System.out.println(json.simpleJson());
-        Assert.assertEquals(json.simpleJson().toString(), result);
+        Assert.assertEquals(result,json.simpleJson().toString());
     }
 
     @Test
     public void simpleJsonWithMap() {
         String result = "{\"name\":\"jon doe\",\"city\":\"chicago\",\"age\":\"22\"}";
         System.out.println(json.simpleJsonWithMap());
-        Assert.assertEquals(json.simpleJsonWithMap().toString(), result);
+        Assert.assertEquals(result,json.simpleJsonWithMap().toString());
     }
 
     @Test
     public void createJsonObjectWithString() {
         String result = "{\"number\":\"23\",\"colour\":\"red\",\"name\":\"maria\"}";
         System.out.println(json.simpleJsonFromString(result));
-        Assert.assertEquals(json.simpleJsonFromString(result).toString(), result);
+        Assert.assertEquals(result,json.simpleJsonFromString(result).toString());
     }
 
     @Test
     public void createSimpleJSONArray() {
         String result = "[\"vehicle\",{\"colour\":\"black\",\"car\":\"honda\",\"year\":\"2007\"}]";
         System.out.print(json.simpleJSONWithJSONArray());
-        Assert.assertEquals(json.simpleJSONWithJSONArray().toString(), result);
+        Assert.assertEquals(result,json.simpleJSONWithJSONArray().toString());
     }
 
     @Test
     public void createJsonArrayFromString() {
         String result = "[\"vehicle\",{\"colour\":\"black\",\"car\":\"honda\",\"year\":\"2007\"}]";
         System.out.print(json.simpleJSONArrayFromString(result));
-        Assert.assertEquals(json.simpleJSONArrayFromString(result).toString(), result);
+        Assert.assertEquals(result,json.simpleJSONArrayFromString(result).toString());
     }
 
     @Test
     public void createJsonArrayFromCollection() {
         String result = "[\"Indonesia\",\"South Korea\",\"Singapore\",\"Japan\"]";
         System.out.println(json.jsonArrayFromCollection());
-        Assert.assertEquals(json.simpleJSONArrayFromString(result).toString(), result);
+        Assert.assertEquals(result,json.simpleJSONArrayFromString(result).toString());
     }
 
     @Test
@@ -71,14 +72,14 @@ public class JsonBuilderTest {
                 "sal, vegas, 18";
         String result = "[{\"name\":\"john\",\"city\":\"chicago\",\"age\":\"22\"},{\"name\":\"gary\",\"city\":\"florida\",\"age\":\"35\"},{\"name\":\"sal\",\"city\":\"vegas\",\"age\":\"18\"}]";
         System.out.println(json.jsonArrayObjectCommaDelimited(string));
-        Assert.assertEquals(json.jsonArrayObjectCommaDelimited(string).toString(), result);
+        Assert.assertEquals(result,json.jsonArrayObjectCommaDelimited(string).toString());
     }
 
     @Test
     public void convertJsonObjectToHttpHeader() {
         String result = "POST \"http://www.example.com/\" HTTP/1.1";
         System.out.println(json.jsonObjectToHttpHeader());
-        Assert.assertEquals(trim(json.jsonObjectToHttpHeader()), result);
+        Assert.assertEquals(result, trim(json.jsonObjectToHttpHeader()));
     }
 
     @Test
@@ -94,32 +95,33 @@ public class JsonBuilderTest {
 
         String result = "{\"method\":\"thing.measurepoint.post\",\"id\":\"123\",\"params\":{\"measurepoints\":{\"temp\":1.02,\"branchCurr\":[\"1.02\",\"2.02\",\"7.93\"],\"Power\":{\"value\":1,\"quality\":9}},\"time\":12345},\"version\":\"1.0\"}";
         System.out.println(json.jsonObjectAndJSONArray(measurement));
-        Assert.assertEquals(json.jsonObjectAndJSONArray(measurement).toString(), result);
+        Assert.assertEquals(result, json.jsonObjectAndJSONArray(measurement).toString() );
     }
 
-    @Test
+    @Test()
     public void extractJsonToGetter() throws IOException {
-        testData = CreditCard.get(System.getProperty("user.dir") + "/src/main/resources/example_2.json");
-        System.out.println(testData.getFirstname());
-        Assert.assertEquals(testData.getFirstname(), "Jon");
-        System.out.println(testData.getLastName());
-        Assert.assertEquals(testData.getLastName(), "Doe");
-        System.out.println(testData.getEmail());
-        Assert.assertEquals(testData.getEmail(), "jd@gmail.com");
-        System.out.println(testData.getDate());
-        Assert.assertEquals(testData.getDate(), "01/01/1967");
-        System.out.println(testData.getAddress());
-        Assert.assertEquals(testData.getAddress(), "anywhere you like");
+        deserialize = CreditCardDeserialize.get(System.getProperty("user.dir") + "/src/main/resources/example_2.json");
+        System.out.println(deserialize);
+        System.out.println(deserialize.getFirstname());
+        Assert.assertEquals("Jon", deserialize.getFirstname());
+        System.out.println(deserialize.getLastName());
+        Assert.assertEquals("Doe", deserialize.getLastName());
+        System.out.println(deserialize.getEmail());
+        Assert.assertEquals("jd@gmail.com", deserialize.getEmail());
+        System.out.println(deserialize.getDate());
+        Assert.assertEquals("01/01/1968", deserialize.getDate());
+        System.out.println(deserialize.getAddress());
+        Assert.assertEquals("anywhere you like", deserialize.getAddress());
 
-        CreditCard.CC cc = testData.getCc();
+        CreditCardDeserialize.CC cc = deserialize.getCc();
         System.out.println(cc.getNumber());
-        Assert.assertEquals(cc.getNumber(), "4444-4444-4444-4444");
+        Assert.assertEquals("4444-4444-4444-4444", cc.getNumber());
         System.out.println(cc.getBank());
-        Assert.assertEquals(cc.getBank(), "DBS");
+        Assert.assertEquals("DBS", cc.getBank());
 
-        CreditCard.Product product = testData.getProduct();
+        CreditCardDeserialize.Product product = deserialize.getProduct();
         System.out.println(product.getType());
-        Assert.assertEquals(product.getType(), "platinum");
+        Assert.assertEquals("platinum", product.getType());
     }
 
     @Test

@@ -1,15 +1,16 @@
 package com.oktaliem.builder;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,9 @@ public class ExcelBuilder {
     private File spreadsheet;
     private Sheet currentSheet;
     private Map<String, Integer> columns;
+    private XSSFSheet ExcelWSheet;
+    private static XSSFCell cell;
+    private static XSSFRow row;
 
     public ExcelBuilder(File file) {
         spreadsheet = file;
@@ -84,5 +88,17 @@ public class ExcelBuilder {
         }
 
         System.out.println("Done");
+    }
+
+    public void setExcelFile(String Path, String SheetName) throws Exception {
+            FileInputStream ExcelFile = new FileInputStream(Path);
+            XSSFWorkbook ExcelWBook = new XSSFWorkbook(ExcelFile);
+            ExcelWSheet = ExcelWBook.getSheet(SheetName);
+    }
+
+    public String getCellData(int RowNum, int ColNum) throws Exception {
+            cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
+            String cellData = cell.getStringCellValue();
+            return cellData;
     }
 }

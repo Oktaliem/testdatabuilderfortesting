@@ -1,25 +1,13 @@
 package com.oktaliem.model;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.File;
 import java.io.IOException;
 
-@JsonDeserialize(as = CreditCard.class)
-public class CreditCard {
-
-    public CreditCard(String firstname, String lastname, String email, String date, String address, CC cc, Product product) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.date = date;
-        this.address = address;
-        this.cc = cc;
-        this.product = product;
-    }
+public class CreditCardDeserialize {
+    public CreditCardDeserialize(){}
 
     @JsonProperty("firstname")
     String firstname;
@@ -45,11 +33,6 @@ public class CreditCard {
     CC cc;
     public CC getCc(){ return this.cc;}
     public static class CC {
-        public CC(String number, String bank){
-            this.number = number;
-            this.bank = bank;
-        }
-
         @JsonProperty("number")
         String number;
         public String getNumber(){ return this.number;}
@@ -63,16 +46,13 @@ public class CreditCard {
     Product product;
     public Product getProduct(){ return this.product;}
     public static class Product {
-        public Product(String type){
-            this.type = type;
-        }
         @JsonProperty("type")
         String type;
         public String getType(){ return this.type;}
     }
 
-    public static String set(CreditCard testData) throws IOException {
+    public static CreditCardDeserialize get(String filename) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(testData);
+        return mapper.readValue(new File(filename), CreditCardDeserialize.class);
     }
 }
