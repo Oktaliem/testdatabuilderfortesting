@@ -19,3 +19,4 @@ Simple utilities/libraries to prepare test data on the fly for Automated API Tes
 - Jdbc Builder (To Do)
 - MongoDB Builder (To Do)
 - Regex Builder
+- Constant Builder
