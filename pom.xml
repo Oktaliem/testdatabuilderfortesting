@@ -99,6 +99,12 @@
             <artifactId>opencsv</artifactId>
             <version>5.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.azakordonets</groupId>
+            <artifactId>fabricator_2.11</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+
     </dependencies>
 
 </project>
