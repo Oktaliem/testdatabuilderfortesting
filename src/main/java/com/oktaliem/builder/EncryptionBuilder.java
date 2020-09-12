@@ -32,8 +32,7 @@ public class EncryptionBuilder {
 
     public String base64Decoder(String input) {
         byte[] decodedBytes = Base64.getDecoder().decode(input);
-        String decodedString = new String(decodedBytes);
-        return decodedString;
+        return new String(decodedBytes);
     }
 
     public String convertToSha256(String input) {

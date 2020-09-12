@@ -26,13 +26,11 @@ public class JsonBuilder {
         map.put("name", "jon doe");
         map.put("age", "22");
         map.put("city", "chicago");
-        JSONObject json = new JSONObject(map);
-        return json;
+        return new JSONObject(map);
     }
 
     public JSONObject simpleJsonFromString(String input) {
-        JSONObject json = new JSONObject(input);
-        return json;
+        return new JSONObject(input);
     }
 
     public JSONArray simpleJSONWithJSONArray() {
@@ -46,8 +44,7 @@ public class JsonBuilder {
     }
 
     public JSONArray simpleJSONArrayFromString(String json) {
-        JSONArray array = new JSONArray(json);
-        return array;
+        return new JSONArray(json);
     }
 
     public JSONArray jsonArrayFromCollection() {
@@ -56,13 +53,11 @@ public class JsonBuilder {
         list.add("South Korea");
         list.add("Singapore");
         list.add("Japan");
-        JSONArray array = new JSONArray(list);
-        return array;
+        return new JSONArray(list);
     }
 
     public JSONArray jsonArrayObjectCommaDelimited(String string) {
-        JSONArray result = CDL.toJSONArray(string);
-        return result;
+        return CDL.toJSONArray(string);
     }
 
     public String jsonObjectToHttpHeader() {

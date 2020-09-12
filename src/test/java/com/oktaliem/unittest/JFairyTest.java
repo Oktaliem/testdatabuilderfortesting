@@ -8,10 +8,17 @@ import io.codearte.jfairy.producer.net.NetworkProducer;
 import io.codearte.jfairy.producer.payment.CreditCard;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.MethodSorters;
+
 
 import java.util.Locale;
 
+@RunWith(JUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JFairyTest {
     Fairy testData = Fairy.create(Locale.getDefault());
 

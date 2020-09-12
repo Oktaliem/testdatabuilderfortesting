@@ -2,11 +2,17 @@ package com.oktaliem.unittest;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.MethodSorters;
 
 import java.io.FileReader;
 import java.io.IOException;
 
+@RunWith(JUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CsvBuilderTest {
     String fileName = System.getProperty("user.dir") + "/src/main/resources/electronictransaction.csv";
 

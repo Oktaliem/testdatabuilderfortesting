@@ -2,8 +2,14 @@ package com.oktaliem.unittest;
 
 import com.oktaliem.builder.RegexBuilder;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.MethodSorters;
 
+@RunWith(JUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RegexBuilderTest {
     RegexBuilder regexBuilder = new RegexBuilder();
 

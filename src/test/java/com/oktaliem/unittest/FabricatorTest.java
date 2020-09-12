@@ -5,10 +5,16 @@ import fabricator.entities.CsvFileBuilder;
 import fabricator.enums.*;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.MethodSorters;
 
 import java.util.Arrays;
 
+@RunWith(JUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FabricatorTest {
 
     @Test
