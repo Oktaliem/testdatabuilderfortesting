@@ -1,0 +1,8 @@
+1 Smartphone
+2 Car
+3 Bike
+4 Plane
+5 House
+6 Dog
+7 Pencil
+8 Stick

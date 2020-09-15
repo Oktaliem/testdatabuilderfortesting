@@ -1,5 +1,6 @@
 package com.oktaliem.unittest;
 
+import com.oktaliem.builder.CollectionBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -7,11 +8,14 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CollectionBuilderTest {
+    CollectionBuilder collection = new CollectionBuilder();
 
     @Test
     public void getSingleArrayInt() {
@@ -34,7 +38,12 @@ public class CollectionBuilderTest {
 
     @Test
     public void getMultidimensionalArray() {
-        int[][] matrix = {{1, 3, 4, 6}, {3, 4, 5, 7}, {2, 4, 5, 7}, {5, 4, 5, 7}}; //test data
+        int[][] matrix = {          //row = i
+                {1, 3, 4, 6},       //row 0
+                {7, 8, 9, 10},      //row 1
+                {11, 12, 13, 14},   //row 2
+                {15, 16, 17, 18}    //row 3
+        };
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -42,8 +51,9 @@ public class CollectionBuilderTest {
             }
             System.out.println();
         }
-        Assert.assertEquals(4,matrix[2][1]);
-        Assert.assertEquals(5,matrix[2][2]);
+        Assert.assertEquals(1, matrix[0][0]); //row 0, column 0
+        Assert.assertEquals(12, matrix[2][1]);
+        Assert.assertEquals(17, matrix[3][2]);
     }
 
     @Test
@@ -55,16 +65,16 @@ public class CollectionBuilderTest {
         block[3] = 45;
         block[4] = 40;
 
-        Assert.assertEquals(45,block[3]);
-        Assert.assertEquals(40,block[4]);
-        Assert.assertEquals(70,block[2]);
-        Assert.assertEquals(21,block[1]);
+        Assert.assertEquals(45, block[3]);
+        Assert.assertEquals(40, block[4]);
+        Assert.assertEquals(70, block[2]);
+        Assert.assertEquals(21, block[1]);
 
     }
 
     @Test
-    public void getTestDataFromArrayList(){
-        ArrayList<String> cars = new ArrayList<>(); //test data
+    public void getTestDataFromArrayList() {
+        List<String> cars = new ArrayList<>(); //test data
         cars.add("BMW");
         cars.add("Honda");
         cars.add("Audi");
@@ -75,8 +85,8 @@ public class CollectionBuilderTest {
     }
 
     @Test
-    public void getTestDataFromLinkedList(){
-        LinkedList<String> cars = new LinkedList<>(); //test data
+    public void getTestDataFromLinkedList() {
+        List<String> cars = new LinkedList<>(); //test data
         cars.add("BMW");
         cars.add("Honda");
         cars.add("Audi");
@@ -87,7 +97,7 @@ public class CollectionBuilderTest {
     }
 
     @Test
-    public void getTestDataFromMapList(){
+    public void getTestDataFromMapList() {
         // Stores in pair, key -> value : Entry
         Map<Integer, String> map = new HashMap<>(); //test data
         map.put(1, "BMW");
@@ -95,6 +105,19 @@ public class CollectionBuilderTest {
         map.put(4, "Honda");
 
         System.out.println(map.get(6));
+    }
+
+    @Test
+    public void convertFromJsonFileToHashMap() throws IOException {
+        Map<String, Object> result = collection.convertJsonFileToHashMap("example_2.json");
+        Assert.assertEquals(result.get("firstname"), "Jon");
+        Map<String, Object> result2 = collection.convertJsonFileToHashMap("Books.json");
+    }
+
+    @Test
+    public void convertFromDatToHashMap() throws FileNotFoundException {
+        HashMap<String, Integer> testData = collection.convertDatToHaspMap("Cars.dat");
+        Assert.assertEquals(87990000,testData.get("Ferrari").intValue());
     }
 
 

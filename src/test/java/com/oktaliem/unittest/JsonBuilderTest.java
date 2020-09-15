@@ -19,7 +19,6 @@ import static org.apache.commons.lang3.StringUtils.trim;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JsonBuilderTest {
     JsonBuilder json = new JsonBuilder();
-    private CreditCard testData;
     private CreditCardDeserialize deserialize;
 
     @Test
