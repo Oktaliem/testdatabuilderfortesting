@@ -4,7 +4,7 @@ import com.oktaliem.builder.WebScraperBuilder;
 import org.junit.Test;
 
 public class WebScrapingBuilderTest {
-    public static final String url ="https://www.randomlists.com/";
+    public static final String url = "https://www.randomlists.com/";
     WebScraperBuilder scrappers = new WebScraperBuilder(url);
 
     @Test
@@ -30,5 +30,15 @@ public class WebScrapingBuilderTest {
     @Test
     public void getInnerHtml() {
         scrappers.getInnerHtml();
+    }
+
+    @Test
+    public void getValueByTag() {
+        scrappers.getElByTag();
+    }
+
+    @Test
+    public void getValueByAttribute(){
+        scrappers.getElByAttribute();
     }
 }
