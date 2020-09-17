@@ -25,7 +25,7 @@ public class ExcelBuilder {
 
     public ExcelBuilder(File file) {
         spreadsheet = file;
-        columns = new HashMap();
+        columns = new HashMap<>();
     }
     public ExcelBuilder(){}
 
