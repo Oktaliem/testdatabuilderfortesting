@@ -65,6 +65,9 @@ public class CollectionBuilderTest {
         block[3] = 45;
         block[4] = 40;
 
+        System.out.println(Arrays.stream(block).max().getAsInt());
+        System.out.println(Arrays.stream(block).min().getAsInt());
+        System.out.println(Arrays.stream(block).average().getAsDouble());
         Assert.assertEquals(45, block[3]);
         Assert.assertEquals(40, block[4]);
         Assert.assertEquals(70, block[2]);
@@ -79,6 +82,7 @@ public class CollectionBuilderTest {
         cars.add("Honda");
         cars.add("Audi");
 
+        System.out.println(cars);
         System.out.println(cars.get(0));
         System.out.println(cars.get(1));
         System.out.println(cars.get(2));
@@ -91,6 +95,7 @@ public class CollectionBuilderTest {
         cars.add("Honda");
         cars.add("Audi");
 
+        System.out.println(cars);
         System.out.println(cars.get(0));
         System.out.println(cars.get(1));
         System.out.println(cars.get(2));
@@ -104,19 +109,23 @@ public class CollectionBuilderTest {
         map.put(6, "Audi");
         map.put(4, "Honda");
 
+        System.out.println(map);
         System.out.println(map.get(6));
     }
 
     @Test
     public void convertFromJsonFileToHashMap() throws IOException {
         Map<String, Object> result = collection.convertJsonFileToHashMap("example_2.json");
+        System.out.println(result);
         Assert.assertEquals(result.get("firstname"), "Jon");
         Map<String, Object> result2 = collection.convertJsonFileToHashMap("Books.json");
+        System.out.println(result2);
     }
 
     @Test
     public void convertFromDatToHashMap() throws FileNotFoundException {
         HashMap<String, Integer> testData = collection.convertDatToHaspMap("Cars.dat");
+        System.out.println(testData);
         Assert.assertEquals(87990000,testData.get("Ferrari").intValue());
     }
 

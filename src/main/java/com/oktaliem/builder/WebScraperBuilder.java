@@ -6,7 +6,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static com.oktaliem.constants.ConstantsWithJavaInterface.HTML_FILE;
 import static org.testng.Assert.fail;
 
 public class WebScraperBuilder {
@@ -68,19 +73,13 @@ public class WebScraperBuilder {
     public void getElByTag() {
         links = page.getElementsByTag("Span");
         for (Element link : links) {
-            //Raw
-            System.out.println(link);
+            System.out.println(link);//Raw
         }
-
         System.out.println("=============================");
-
         for (Element link : links) {
-            // get text only
-            System.out.println(link.text());
+            System.out.println(link.text());// get text only
         }
-
         System.out.println("=============================");
-
         //Filter, remove "Search" and "Male Names"
         for (Element link : links) {
             if (!link.text().equals("Search") && !link.text().equals("Male Names")) {
@@ -94,13 +93,42 @@ public class WebScraperBuilder {
         for (Element link : links) {
             System.out.println(link.attr("content"));
         }
-
         System.out.println("=============================");
-
         links = page.getElementsByTag("link");
         for (Element link : links) {
-            System.out.println(link);
-            System.out.println(link.attr("sizes"));
+            System.out.println(link);//raw
         }
+        System.out.println("=============================");
+        for (Element link : links) {
+            System.out.println(link.attr("sizes"));//Filtered
+        }
+
+    }
+
+
+    public void getAllElFromHtmlFile() {
+        Document document = Jsoup.parse(HTML_FILE);
+        Elements allElements = document.getAllElements();
+
+        System.out.println(allElements.get(3).nodeName() + " " + allElements.get(3).ownText());
+        System.out.println(allElements.get(2).nodeName() + " " + allElements.get(2).text());
+        System.out.println("==========================================");
+
+//        List<String> nodes = new ArrayList<>();
+//        for (Element allElement : allElements) {
+//            nodes.add(allElement.nodeName());
+//        }
+
+        //The same purpose as above
+        List<String> nodes = allElements.stream().map(Element::nodeName).collect(Collectors.toList());
+
+        System.out.println("Before Remove Duplicate: " + nodes);
+        System.out.println("==========================================");
+        List<String> removeDuplicates = new ArrayList<>(new HashSet<>(nodes));
+        System.out.println("After Remove Duplicate: " + nodes);
+        for (String element : removeDuplicates) {
+            System.out.println(element);
+        }
+        System.out.println("==========================================");
     }
 }
