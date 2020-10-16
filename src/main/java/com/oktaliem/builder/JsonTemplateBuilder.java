@@ -12,6 +12,7 @@ import static io.qala.datagen.RandomShortApi.sampleMultiple;
 public class JsonTemplateBuilder {
 
     public String sample_1() {
+        //note: tidak boleh ada spasi pada value
         String template = "{" +
                 "  name : John," +
                 "  age : 23," +
