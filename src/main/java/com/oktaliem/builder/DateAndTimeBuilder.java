@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class DateAndTimeBuilder {
     SimpleDateFormat date;
@@ -67,5 +68,25 @@ public class DateAndTimeBuilder {
         Calendar calendar = new GregorianCalendar(y,m,d);
         calendar.add(Calendar.MONTH,-1);
         return date.format(calendar.getTime());
+    }
+
+    public String getIso8601DateAndTime(){
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat simpleDateFormat;
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("CET"));
+        return simpleDateFormat.format(date);
+    }
+
+    public String getDateAndTimeIso8601String(int year, int calendar, int date, int hourOfDay, int minute, int second){
+        Calendar cal = Calendar.getInstance();
+//        calendar.set(2017, Calendar.FEBRUARY, 16, 20, 22, 28);
+        cal.set(year, calendar, date, hourOfDay, minute, second);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date dt = cal.getTime();
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Singapore"));
+        return sdf.format(dt);
     }
 }

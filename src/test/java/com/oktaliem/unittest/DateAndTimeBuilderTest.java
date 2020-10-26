@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
 
+import java.util.Calendar;
+
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DateAndTimeBuilderTest {
@@ -56,5 +58,14 @@ public class DateAndTimeBuilderTest {
     @Test
     public void getCurrentGregorianCalenderTest(){ System.out.println(dateAndTime.getGregorianCalendar()); }
 
+    @Test
+    public void getIso8601DateTest(){
+        System.out.println(dateAndTime.getIso8601DateAndTime());
+    }
+
+    @Test
+    public void getIso8601DateWithCalendarTest(){
+        System.out.println(dateAndTime.getDateAndTimeIso8601String(2017, Calendar.FEBRUARY, 16, 20, 22, 28));
+    }
 
 }
