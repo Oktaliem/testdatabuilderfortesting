@@ -48,20 +48,44 @@ public class JsonPathTest {
         String getResponse = path.getJsonFile();
         System.out.println(getResponse);
 
-        String sportQuestion = JsonPath.read(getResponse,"$.quiz.sport.q1.question");
-        System.out.println(sportQuestion);
+        String sportQuestion = JsonPath.read(getResponse, "$.quiz.sport.q1.question");
+        Assert.assertEquals("Which one is correct team name in NBA?", sportQuestion);
 
-        List<String>  questions = JsonPath.read(getResponse,"$..q1.question");
+        List<String> questions = JsonPath.read(getResponse, "$..q1.question");
         System.out.println(questions);
 
-        List<String> option2 = JsonPath.read(getResponse,"$..q1.options[1]");
+        List<String> option2 = JsonPath.read(getResponse, "$..q1.options[1]");
         System.out.println(option2);
 
-        List<String> option3 = JsonPath.read(getResponse,"$..sport.q1.options[1]");
+        List<String> option3 = JsonPath.read(getResponse, "$..sport.q1.options[1]");
         System.out.println(option3);
+
+        List<String> option4 = JsonPath.read(getResponse, "$..sport.q1.options[1]");
+        System.out.println(option4);
+
+        List<String> answer = JsonPath.read(getResponse, "$..answer");
+        System.out.println(answer.get(2));
+        Assert.assertEquals("4", answer.get(2));
 
     }
 
+
+    @Test
+    public void SampleTestThree() throws IOException {
+        JsonPathBuilder path = new JsonPathBuilder("identity.json");
+        String getResponse = path.getJsonFile();
+        System.out.println(getResponse);
+
+        String street = JsonPath.read(getResponse, "$.address.street");
+        Assert.assertEquals("Kulas Light", street);
+
+        String latitude = JsonPath.read(getResponse, "$.address.geo.lat");
+        Assert.assertEquals("-37.3159", latitude);
+
+        String bs = JsonPath.read(getResponse, "$.company.bs");
+        Assert.assertEquals("harness real-time e-markets", bs);
+
+    }
 
 }
 
