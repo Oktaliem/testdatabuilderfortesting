@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.oktaliem.constants.ConstantsWithJavaInterface.HTML_FILE;
-import static org.testng.Assert.fail;
+import static org.junit.Assert.fail;
 
 public class WebScraperBuilder {
     private final Document page;

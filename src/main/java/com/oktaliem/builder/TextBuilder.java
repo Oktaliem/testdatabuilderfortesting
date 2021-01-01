@@ -1,6 +1,7 @@
 package com.oktaliem.builder;
 
-import org.testng.Assert;
+
+import org.junit.Assert;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
