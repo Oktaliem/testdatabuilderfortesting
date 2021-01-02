@@ -27,7 +27,9 @@ public class ExcelBuilder {
         spreadsheet = file;
         columns = new HashMap<>();
     }
-    public ExcelBuilder(){}
+
+    public ExcelBuilder() {
+    }
 
     public void switchToSheet(String name) throws IOException, InvalidFormatException {
         Workbook workbooks = new XSSFWorkbook(spreadsheet);
@@ -76,7 +78,6 @@ public class ExcelBuilder {
                 }
             }
         }
-
         try {
             FileOutputStream outputStream = new FileOutputStream(fileName);
             workbook.write(outputStream);
@@ -88,9 +89,9 @@ public class ExcelBuilder {
     }
 
     public void setExcelFile(String Path, String SheetName) throws Exception {
-            FileInputStream ExcelFile = new FileInputStream(Path);
-            XSSFWorkbook ExcelWBook = new XSSFWorkbook(ExcelFile);
-            ExcelWSheet = ExcelWBook.getSheet(SheetName);
+        FileInputStream ExcelFile = new FileInputStream(Path);
+        XSSFWorkbook ExcelWBook = new XSSFWorkbook(ExcelFile);
+        ExcelWSheet = ExcelWBook.getSheet(SheetName);
     }
 
     public String getCellData(int RowNum, int ColNum) throws Exception {

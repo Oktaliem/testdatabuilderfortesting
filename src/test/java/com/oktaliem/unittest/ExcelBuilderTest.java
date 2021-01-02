@@ -12,10 +12,12 @@ import org.junit.runners.MethodSorters;
 import java.io.File;
 import java.io.IOException;
 
+import static com.oktaliem.constants.ConstantForPath.MAIN_RESOURCES_PATH;
+
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ExcelBuilderTest {
-    String fileName = System.getProperty("user.dir") + "/src/main/resources/SampleData.xlsx";
+    String fileName = MAIN_RESOURCES_PATH + "SampleData.xlsx";
 
     @Test
     public void getExcelColumnAndRowFromExcelFile() throws IOException, InvalidFormatException {
@@ -26,7 +28,7 @@ public class ExcelBuilderTest {
 
     @Test
     public void writeDataToExcelFile() {
-        String fileName = System.getProperty("user.dir") + "/src/main/resources/WriteExcel.xlsx";
+        String fileName = MAIN_RESOURCES_PATH + "WriteExcel.xlsx";
         Object[][] cars = {
                 {"Car", "Type", "Total"},
                 {"BMW", "Sedan", 2},
@@ -42,9 +44,9 @@ public class ExcelBuilderTest {
     @Test
     public void getValueBySetUpRowAncColumn() throws Exception {
         ExcelBuilder excel = new ExcelBuilder();
-        excel.setExcelFile(fileName,"SalesOrders");
-        Assert.assertEquals("Kivell",excel.getCellData(2,2));
-        System.out.println(excel.getCellData(2,2));
+        excel.setExcelFile(fileName, "SalesOrders");
+        Assert.assertEquals("Kivell", excel.getCellData(2, 2));
+        System.out.println(excel.getCellData(2, 2));
     }
 
 }
