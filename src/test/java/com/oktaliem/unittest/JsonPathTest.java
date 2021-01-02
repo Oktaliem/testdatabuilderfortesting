@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
 
-
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(JUnit4.class)
@@ -84,6 +84,38 @@ public class JsonPathTest {
 
         String bs = JsonPath.read(getResponse, "$.company.bs");
         Assert.assertEquals("harness real-time e-markets", bs);
+
+    }
+
+    @Test
+    public void SampleTestFourth() throws IOException {
+        JsonPathBuilder path = new JsonPathBuilder("heroes.json");
+        String getResponse = path.getJsonFile();
+        System.out.println(getResponse);
+
+        String secretBase = JsonPath.read(getResponse, "$.secretBase");
+        Assert.assertEquals("Super tower", secretBase);
+
+        Boolean active = JsonPath.read(getResponse, "$.active");
+        Assert.assertEquals(true, active);
+
+        List<String> powers = JsonPath.read(getResponse, "$.members[0].powers");
+        Assert.assertEquals("Radiation blast", powers.get(2));
+
+        List<String> powersxz = JsonPath.read(getResponse, "$.members[*].powers[1]");
+        Assert.assertEquals("[\"Turning tiny\",\"Damage resistance\",\"Heat Immunity\"]", powersxz.toString());
+
+        List<String> powersxy = JsonPath.read(getResponse, "$.members[1].powers");
+        Assert.assertEquals("[\"Million tonne punch\",\"Damage resistance\",\"Superhuman reflexes\"]", powersxy.toString());
+
+        List<String> secretIdentity = JsonPath.read(getResponse, "$.members[*].secretIdentity");
+        List<String> arraySecretIdentity = Arrays.asList("Dan Jukes", "Jane Wilson", "Unknown");
+        Assert.assertEquals(arraySecretIdentity, secretIdentity);
+
+        List<Integer> age = JsonPath.read(getResponse, "$.members[*].age");
+        List<Integer> list = Arrays.asList(29, 39, 1000000);
+        Assert.assertEquals(list, age);
+
 
     }
 
