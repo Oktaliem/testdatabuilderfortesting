@@ -38,7 +38,6 @@ public class JsonPathTest {
 
         List<String> titles = JsonPath.read(getResponse, "$.[*].title");
         System.out.println(titles);
-
     }
 
 
@@ -84,7 +83,6 @@ public class JsonPathTest {
 
         String bs = JsonPath.read(getResponse, "$.company.bs");
         Assert.assertEquals("harness real-time e-markets", bs);
-
     }
 
     @Test
@@ -116,6 +114,44 @@ public class JsonPathTest {
         List<Integer> list = Arrays.asList(29, 39, 1000000);
         Assert.assertEquals(list, age);
 
+    }
+
+    @Test
+    public void SampleTestFifth() throws IOException {
+        JsonPathBuilder path = new JsonPathBuilder("weather.json");
+        String getResponse = path.getJsonFile();
+
+        List<String> deviceId = JsonPath.read(getResponse, "$.metadata.stations[*].device_id");
+        System.out.println(deviceId);
+
+        int count = deviceId.size();
+
+        List<String> deviceName = JsonPath.read(getResponse, "$.metadata.stations[*].name");
+        System.out.println(deviceName);
+        Assert.assertEquals(count, deviceName.size());
+
+        List<String> latitude = JsonPath.read(getResponse, "$.metadata.stations[*].location.latitude");
+        System.out.println(latitude);
+        Assert.assertEquals(count, latitude.size());
+
+        List<String> longitude = JsonPath.read(getResponse, "$.metadata.stations[*].location.longitude");
+        System.out.println(longitude);
+        Assert.assertEquals(count, longitude.size());
+
+        List<String> timestamp = JsonPath.read(getResponse, "$.items[*].timestamp");
+        System.out.println(timestamp);
+        System.out.println(timestamp.size());
+
+        String timestamp1 = JsonPath.read(getResponse, "$.items[0].timestamp");
+        System.out.println(timestamp1);
+        String timestamp2 = JsonPath.read(getResponse, "$.items[1].timestamp");
+        System.out.println(timestamp2);
+        List<String> statId = JsonPath.read(getResponse, "$.items[0].readings[*].station_id");
+        System.out.println(statId.size());
+        String statId1 = JsonPath.read(getResponse, "$.items[0].readings[0].station_id");
+        System.out.println(statId1);
+        double value1 = JsonPath.read(getResponse, "$.items[0].readings[0].value");
+        System.out.println(value1);
 
     }
 
