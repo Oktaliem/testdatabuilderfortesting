@@ -66,6 +66,7 @@ public class DateAndTimeBuilderTest {
     @Test
     public void getIso8601DateWithCalendarTest(){
         System.out.println(dateAndTime.getDateAndTimeIso8601String(2017, Calendar.FEBRUARY, 16, 20, 22, 28));
+        System.out.println(dateAndTime.getCurrentDateAndTimeIso8601String(15));
     }
 
 }

@@ -80,6 +80,7 @@ public class JavaFakerTest {
         System.out.println(testData.number().numberBetween(1,1000));
         System.out.println(testData.number().randomNumber());
         System.out.println(testData.number().randomDouble(2,1,9));
+        System.out.println(testData.number().randomDouble(1,11,20));
     }
 
     @Test
