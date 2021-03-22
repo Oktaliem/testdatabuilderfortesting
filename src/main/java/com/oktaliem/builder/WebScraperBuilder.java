@@ -125,7 +125,7 @@ public class WebScraperBuilder {
         System.out.println("Before Remove Duplicate: " + nodes);
         System.out.println("==========================================");
         List<String> removeDuplicates = new ArrayList<>(new HashSet<>(nodes));
-        System.out.println("After Remove Duplicate: " + nodes);
+        System.out.println("After Remove Duplicate: " + removeDuplicates);
         for (String element : removeDuplicates) {
             System.out.println(element);
         }
