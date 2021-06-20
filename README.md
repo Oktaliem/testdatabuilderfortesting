@@ -26,4 +26,6 @@ Simple utilities/libraries to prepare test data on the fly for Automated API Tes
 - Text file Builder
 - Web Scraping Builder
 - I/O Builder
+- Random String Builder  
 - Cleaning Data Builder (To Do)
+
